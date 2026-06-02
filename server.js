@@ -9,12 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Home Route
-app.get("/", (req, res) => {
-    res.send("AI Chatbot Server Running 🚀");
-});
-
-// Chat Route
 app.post("/chat", async (req, res) => {
 
     try {
@@ -46,10 +40,9 @@ app.post("/chat", async (req, res) => {
 
     } catch (error) {
 
-        console.error("OpenRouter Error:",
-            error.response?.data || error.message);
+        console.log(error.response?.data || error.message);
 
-        res.status(500).json({
+        res.json({
             reply: "AI server error ❌"
         });
 
@@ -57,8 +50,6 @@ app.post("/chat", async (req, res) => {
 
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
 });
